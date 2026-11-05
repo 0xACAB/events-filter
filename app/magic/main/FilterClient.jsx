@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useExperimentStore } from './states';
 import TopCoefficients from './TopCoefficients';
 import ResultsSection from './ResultsSection';
 import FilterPanel from './FilterPanel';
 import { fetchExperimentStats } from './actions/stats';
+import eventCardConfig from '../../../config/event-card.json';
 
 const subscribeToClient = () => () => {};
 const getClientStatus = () => true;
@@ -16,9 +17,6 @@ export default function FilterClient() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const isClient = useSyncExternalStore(subscribeToClient, getClientStatus, getServerClientStatus);
-    const [eventCardConfig, setEventCardConfig] = useState(null);
-    const [selectedCardProfileId, setSelectedCardProfileId] = useState(null);
-    const [eventCardConfigError, setEventCardConfigError] = useState(null);
 
     const {
         events,
@@ -30,45 +28,7 @@ export default function FilterClient() {
         setSelectedVariant,
         loadEvents
     } = useExperimentStore();
-    const selectedCardProfile = eventCardConfig?.profiles.find((profile) => profile.id === selectedCardProfileId);
-
-    useEffect(() => {
-        let isMounted = true;
-
-        async function fetchEventCardConfig() {
-            try {
-                const response = await fetch('/api/event-card-config', { cache: 'no-store' });
-                const config = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(config.error || 'Не удалось загрузить конфигурацию карточки.');
-                }
-
-                if (
-                    !Array.isArray(config.profiles) ||
-                    !config.profiles.length ||
-                    !config.profiles.some((profile) => profile.id === config.defaultProfileId)
-                ) {
-                    throw new Error('В конфигурации карточки не найден профиль по умолчанию.');
-                }
-
-                if (isMounted) {
-                    setEventCardConfig(config);
-                    setSelectedCardProfileId(config.defaultProfileId);
-                }
-            } catch (error) {
-                console.error('Failed to fetch EventCard config:', error);
-                if (isMounted) {
-                    setEventCardConfigError(error instanceof Error ? error.message : 'Не удалось загрузить конфигурацию карточки.');
-                }
-            }
-        }
-
-        fetchEventCardConfig();
-        return () => {
-            isMounted = false;
-        };
-    }, []);
+    const selectedCardProfile = eventCardConfig.profiles.find((profile) => profile.id === eventCardConfig.defaultProfileId);
 
     // Инициализация статики (один раз)
     useEffect(() => {
@@ -166,11 +126,7 @@ export default function FilterClient() {
 
                 <TopCoefficients onCoefficientSelect={handleCoefficientSelect} />
 
-                {selectedCardProfile ? (
-                    <ResultsSection events={events} loading={loading} cardProfile={selectedCardProfile} />
-                ) : eventCardConfigError ? (
-                    <div className="text-center py-8 text-red-600">{eventCardConfigError}</div>
-                ) : null}
+                {selectedCardProfile && <ResultsSection events={events} loading={loading} cardProfile={selectedCardProfile} />}
             </div>
         </div>
     );

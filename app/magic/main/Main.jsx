@@ -1,6 +1,6 @@
 import './styles.css'; // ← импортируем локальный CSS
 
-// app/nba/main/page.js
+// app/magic/main/page.js
 import FilterClient from './FilterClient';
 import { Suspense } from 'react';
 
