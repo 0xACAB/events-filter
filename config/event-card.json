@@ -1,0 +1,34 @@
+{
+    "defaultProfileId": "events",
+    "profiles": [
+        {
+            "id": "events",
+            "name": "События",
+            "pageTitle": "Фильтр событий",
+            "eventPrefix": "Запись: ",
+            "winnerHome": "Результат: Тест А",
+            "winnerAway": "Результат: Тест B",
+            "winnerUnknown": "Результат не определен",
+            "sectionTitle": "Сравнение значений:",
+            "primaryTitle": "Основной набор:",
+            "homeLabel": "Тест А",
+            "awayLabel": "Тест B",
+            "footerHome": "Тест А — результат выше",
+            "footerAway": "Тест B — результат выше",
+            "footerUnknown": "Не определено",
+            "showOutcomeLabels": true,
+            "successLabel": "Лучший результат",
+            "failureLabel": "Другой результат",
+            "sourceLabels": {
+                "winline": "Первый",
+                "fonbet": "Второй"
+            },
+            "filterLabel": "Фильтр по значению:",
+            "teamFilterLabel": "Для теста:",
+            "allTeamsLabel": "Любой тест",
+            "homeTeamLabel": "Тест A",
+            "awayTeamLabel": "Тест B",
+            "result": "Показатели"
+        }
+    ]
+}

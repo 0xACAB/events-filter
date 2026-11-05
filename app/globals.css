@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+@layer theme;
+
+/* This had to be added to change the color that tailwind sets at background-color after a refresh */
+/*@layer base {
+    section {
+        all: revert;
+    }
+}*/
+
+@theme {
+    /*--font-sans: "Helvetica Neue", "sans-serif";*/
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 4rem;
+
+    --color-primary: #ec4755;
+    --color-secondary: #a12c34;
+    --color-tertiary: #99a0a3;
+    --color-border: #1a2e35;
+    --color-background: #ffffff;
+}
+
+@layer utilities {
+    .pixelated {
+        image-rendering: optimizeSpeed; /* Older versions of FF          */
+        image-rendering: -moz-crisp-edges; /* FF 6.0+                       */
+        image-rendering: -webkit-optimize-contrast; /* Safari                        */
+        image-rendering: -o-crisp-edges; /* OS X & Windows Opera (12.02+) */
+        image-rendering: pixelated; /* Awesome future-browsers       */
+        -ms-interpolation-mode: nearest-neighbor; /* IE  */
+    }
+}
+
+:root {
+}
+
+.content p {
+    @apply my-6;
+}
+
+.content ul {
+    @apply my-6;
+}
+
+.control {
+    all: revert;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
