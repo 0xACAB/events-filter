@@ -265,6 +265,7 @@ function EventCard({ event, selectedCoefficient, cardProfile, getOutcomeColor })
                 </div>
             )}
 
+
             <div className="flex justify-between items-center pt-3 border-t">
                 <div className="text-xs text-gray-500">
                     {event.createdAt && new Date(event.createdAt).toLocaleDateString('ru-RU')}
