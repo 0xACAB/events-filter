@@ -265,12 +265,6 @@ function EventCard({ event, selectedCoefficient, cardProfile, getOutcomeColor })
                 </div>
             )}
 
-            {event.comment && (
-                <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-                    <div className="text-sm text-gray-600 mb-2">{event.comment}</div>
-                </div>
-            )}
-
             <div className="flex justify-between items-center pt-3 border-t">
                 <div className="text-xs text-gray-500">
                     {event.createdAt && new Date(event.createdAt).toLocaleDateString('ru-RU')}
