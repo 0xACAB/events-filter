@@ -183,7 +183,6 @@ function EventCard({ event, selectedCoefficient, cardProfile, getOutcomeColor })
                                                     selectedCoefficient !== null &&
                                                     (Number(coefficientValue) || 0).toFixed(2) ===
                                                         (Number(selectedCoefficient) || 0).toFixed(2);
-
                                                 return (
                                                     <div
                                                         key={index}
