@@ -61,7 +61,7 @@ export default function FilterPanel({
                             {uniqueCoefficients.map((coefficientValue) => {
                                 const stat = coefficientStatsByValue.get(coefficientValue.toFixed(2));
                                 return (
-                                    <option key={coefficientValue} value={coefficientValue}>
+                                    <option key={coefficientValue} value={coefficientValue.toFixed(2)}>
                                         {coefficientValue.toFixed(2)}
                                         {stat && ` (${stat.successCount}/${stat.sampleSize})`}
                                     </option>

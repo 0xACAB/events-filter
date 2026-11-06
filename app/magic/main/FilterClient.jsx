@@ -53,10 +53,11 @@ export default function FilterClient() {
     useEffect(() => {
         if (!isClient) return;
 
-        const coefficientFromUrl = searchParams.get('coefficient');
+        const coefficientParam = searchParams.get('coefficient');
+        const coefficientFromUrl = coefficientParam ? Number(coefficientParam).toFixed(2) : null;
         const variantFromUrl = searchParams.get('team');
         if (coefficientFromUrl && coefficientFromUrl !== selectedCoefficient) {
-            setSelectedCoefficient(Number(coefficientFromUrl).toFixed(2));
+            setSelectedCoefficient(coefficientFromUrl);
         }
         if (variantFromUrl && variantFromUrl !== selectedVariant) setSelectedVariant(variantFromUrl);
         if (!coefficientFromUrl && selectedCoefficient) setSelectedCoefficient(null);
