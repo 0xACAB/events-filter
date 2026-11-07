@@ -1,8 +1,11 @@
-import DesktopPage from './desktopPage';
-import MobilePage from './mobilePage';
-import isMobileDevice from '@/lib/responsive';
+import { Suspense } from 'react';
+import FilterClient from './event-filter/FilterClient';
+import './event-filter/styles.css';
 
-export default async function Page() {
-    const mobile = await isMobileDevice();
-    return <>{mobile ? <MobilePage mobile={mobile} /> : <DesktopPage mobile={mobile} />}</>;
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Загрузка...</div>}>
+            <FilterClient />
+        </Suspense>
+    );
 }

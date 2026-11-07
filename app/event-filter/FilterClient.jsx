@@ -7,7 +7,7 @@ import TopCoefficients from './TopCoefficients';
 import ResultsSection from './ResultsSection';
 import FilterPanel from './FilterPanel';
 import { fetchExperimentStats } from './actions/stats';
-import eventCardConfig from '../../../config/event-card.json';
+import eventCardConfig from '../../config/event-card.json';
 
 const subscribeToClient = () => () => {};
 const getClientStatus = () => true;
@@ -78,7 +78,7 @@ export default function FilterClient() {
         } else {
             params.delete('coefficient');
         }
-        router.push(`/magic/main?${params.toString()}`);
+        router.push(`/?${params.toString()}`);
     };
 
     const handleVariantSelect = (value) => {
@@ -88,7 +88,7 @@ export default function FilterClient() {
         } else {
             params.delete('team');
         }
-        router.push(`/magic/main?${params.toString()}`);
+        router.push(`/?${params.toString()}`);
     };
 
     // На сервере показываем заглушку, на клиенте - полный компонент
