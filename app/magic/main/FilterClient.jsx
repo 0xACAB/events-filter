@@ -28,7 +28,6 @@ export default function FilterClient() {
         setSelectedVariant,
         loadEvents
     } = useExperimentStore();
-    const selectedCardProfile = eventCardConfig.profiles.find((profile) => profile.id === eventCardConfig.defaultProfileId);
 
     // Инициализация статики (один раз)
     useEffect(() => {
@@ -98,7 +97,7 @@ export default function FilterClient() {
             <div className="scrollbar-aware-container">
                 <div className="p-4 max-w-6xl mx-auto">
                     <h1 className="text-2xl font-bold mb-6 text-center">
-                        {selectedCardProfile?.pageTitle || 'Фильтр событий'}
+                        {eventCardConfig?.pageTitle || 'Фильтр событий'}
                     </h1>
                     <div>Загрузка...</div>
                 </div>
@@ -110,7 +109,7 @@ export default function FilterClient() {
         <div className="scrollbar-aware-container">
             <div className="p-4 max-w-6xl mx-auto">
                 <h1 className="text-2xl font-bold mb-6 text-center">
-                    {selectedCardProfile?.pageTitle || 'Фильтр событий'}
+                    {eventCardConfig?.pageTitle || 'Фильтр событий'}
                 </h1>
 
                 <FilterPanel
@@ -118,16 +117,16 @@ export default function FilterClient() {
                     events={events}
                     onCoefficientSelect={handleCoefficientSelect}
                     onVariantSelect={handleVariantSelect}
-                    coefficientFilterLabel={selectedCardProfile?.filterLabel}
-                    variantFilterLabel={selectedCardProfile?.teamFilterLabel}
-                    allVariantsLabel={selectedCardProfile?.allTeamsLabel}
-                    variantALabel={selectedCardProfile?.homeTeamLabel}
-                    variantBLabel={selectedCardProfile?.awayTeamLabel}
+                    coefficientFilterLabel={eventCardConfig?.filterLabel}
+                    variantFilterLabel={eventCardConfig?.teamFilterLabel}
+                    allVariantsLabel={eventCardConfig?.allTeamsLabel}
+                    variantALabel={eventCardConfig?.homeTeamLabel}
+                    variantBLabel={eventCardConfig?.awayTeamLabel}
                 />
 
                 <TopCoefficients onCoefficientSelect={handleCoefficientSelect} />
 
-                {selectedCardProfile && <ResultsSection events={events} loading={loading} cardProfile={selectedCardProfile} />}
+                {eventCardConfig && <ResultsSection events={events} loading={loading} cardProfile={eventCardConfig} />}
             </div>
         </div>
     );
