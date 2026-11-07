@@ -210,7 +210,6 @@ function EventCard({ event, selectedCoefficient, cardProfile, getOutcomeColor })
                               : cardProfile.winnerUnknown}
                     </div>
                 </div>
-                {hasMatchingCoefficient && <span className="px-2 py-1 bg-amber-200 text-amber-900 text-xs rounded-full">✓</span>}
             </div>
 
             <div className="mb-4">
@@ -254,8 +253,8 @@ function EventCard({ event, selectedCoefficient, cardProfile, getOutcomeColor })
                                         }`}
                                     >
                                         {(Number(coefficientValue) || 0).toFixed(2)}
-                                        {isSelected && ' ✓'}
                                     </div>
+                                    {isSelected && <div className="text-xs font-medium text-amber-800">Выбрано</div>}
                                     {cardProfile.showOutcomeLabels && hasResult && (
                                         <div
                                             className={`text-xs mt-1 font-medium ${isWinner ? 'text-emerald-700' : 'text-rose-700'}`}
@@ -319,6 +318,11 @@ function EventCard({ event, selectedCoefficient, cardProfile, getOutcomeColor })
                                                         >
                                                             {(Number(coefficientValue) || 0).toFixed(2)}
                                                         </div>
+                                                        {isSelected && (
+                                                            <div className="text-xs font-medium text-amber-800">
+                                                                Выбрано
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 );
                                             })}
